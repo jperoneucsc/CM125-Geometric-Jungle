@@ -1,12 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class TempMovement : MonoBehaviour
 {
     public float forwardSpeed = 15f;
     public float jumpForce = 4f;
     public int playerSpeed = 6;
+    public Canvas canvas;
     private bool isTouchGround = true;
     Rigidbody rb;
 
@@ -49,5 +51,20 @@ public class TempMovement : MonoBehaviour
     private void OnCollisionStay()
     {
         isTouchGround = true;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.collider.CompareTag("Respawn"))
+        {
+            canvas.gameObject.SetActive(true);
+        }
+    }
+
+    public void RestartScene()
+    {
+        // Get the current active scene and reload it
+        Scene currentScene = SceneManager.GetActiveScene();
+        SceneManager.LoadScene(currentScene.name);
     }
 }

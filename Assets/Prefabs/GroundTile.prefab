@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3994055092995265947}
   m_Layer: 0
   m_Name: Sphere
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 3364207980643119857}
   m_Layer: 0
   m_Name: Cube (1)
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -271,7 +271,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.7, y: 0, z: 25.69}
-  m_LocalScale: {x: 11.287678, y: 2.2551, z: 2.2551}
+  m_LocalScale: {x: 11.287678, y: 2.2551, z: 0.8708069}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2574532987903581607}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 7290560389366657182}
   m_Layer: 0
   m_Name: Cube (2)
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -676,7 +676,7 @@ GameObject:
   - component: {fileID: 1841827497873043687}
   m_Layer: 0
   m_Name: Sphere (2)
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -781,7 +781,7 @@ GameObject:
   - component: {fileID: 2273678579206880366}
   m_Layer: 0
   m_Name: Cube
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -795,8 +795,8 @@ Transform:
   m_GameObject: {fileID: 6363100611141296265}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.08, y: 0, z: 4.36}
-  m_LocalScale: {x: 7.246963, y: 1.5745, z: 1.5745}
+  m_LocalPosition: {x: 6.57, y: 0, z: 7.12}
+  m_LocalScale: {x: 7.246963, y: 1.5745, z: 0.7308199}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2574532987903581607}
@@ -886,7 +886,7 @@ GameObject:
   - component: {fileID: 5683218030636730124}
   m_Layer: 0
   m_Name: Sphere (1)
-  m_TagString: Untagged
+  m_TagString: Respawn
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
