@@ -5,6 +5,8 @@ using UnityEngine.SceneManagement;
 
 public class TempMovement : MonoBehaviour
 {
+    [SerializeField] EndlessLevelGameManager gameManager;
+
     public float forwardSpeed = 15f;
     public float jumpForce = 20f;
     public int playerSpeed = 150;
@@ -131,7 +133,6 @@ public class TempMovement : MonoBehaviour
     // Health management functions
     public void Damage()
     {
-        Debug.Log("Taken damage");
         currentHealth -= 1;
 
         if (currentHealth <= 0)
@@ -156,5 +157,10 @@ public class TempMovement : MonoBehaviour
     public void Die()
     {
         gameObject.SetActive(false);
+
+        if (gameManager != null)
+        {
+            gameManager.PlayerDied();
+        }
     }
 }
