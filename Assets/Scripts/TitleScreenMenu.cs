@@ -4,15 +4,37 @@ using UnityEngine;
 
 public class TitleScreenMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public Canvas title;
+    public Canvas credits;
 
-    // Update is called once per frame
-    void Update()
+    // Start is called before the first frame update
+    public void goToCredits()
     {
-        
+        // Hide the current canvas
+        if (title != null)
+        {
+            title.gameObject.SetActive(false);
+        }
+
+        // Show the new canvas
+        if (credits != null)
+        {
+            credits.gameObject.SetActive(true);
+        }
+    }
+    
+    public void goToMain()
+    {
+        // Hide the current canvas
+        if (credits != null)
+        {
+            credits.gameObject.SetActive(false);
+        }
+
+        // Show the new canvas
+        if (title != null)
+        {
+            title.gameObject.SetActive(true);
+        }
     }
 }
