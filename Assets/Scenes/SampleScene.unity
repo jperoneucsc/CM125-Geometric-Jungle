@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.67124754, g: 0.7037481, b: 0.7609396, a: 1}
+  m_IndirectSpecularColor: {r: 0.6712474, g: 0.7037472, b: 0.76093805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -525,8 +525,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 15
-  jumpForce: 4
-  playerSpeed: 6
+  jumpForce: 7
+  playerSpeed: 16
   canvas: {fileID: 0}
 --- !u!54 &1198273073
 Rigidbody:
