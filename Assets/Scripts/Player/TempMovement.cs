@@ -11,8 +11,8 @@ public class TempMovement : MonoBehaviour
     public float playerMass = 3.0f;
     public float playerFallingMass = 4.0f;
     public Canvas canvas;
-    private bool isTouchGround = true;
-    Rigidbody rb;
+    public bool isTouchGround = true;
+    public Rigidbody rb;
     public LayerMask groundLayer;
     public LayerMask obstacleLayer;
 
@@ -50,7 +50,6 @@ public class TempMovement : MonoBehaviour
         } else {
             rb.mass = playerMass;
         }
-        
 
         Move();
         if (Input.GetButtonDown("Jump") && isTouchGround == true)
