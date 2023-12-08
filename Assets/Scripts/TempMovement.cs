@@ -11,6 +11,8 @@ public class TempMovement : MonoBehaviour
     public Canvas canvas;
     private bool isTouchGround = true;
     Rigidbody rb;
+    public LayerMask groundLayer;
+    public LayerMask obstacleLayer;
 
     // Start is called before the first frame update
     void Start()
@@ -21,10 +23,14 @@ public class TempMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        isTouchGround = Physics.Raycast(transform.position, Vector3.down, 1, groundLayer);
         rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
 
         Move();
-        Jump();
+        if (Input.GetButtonDown("Jump") && isTouchGround == true)
+        {
+            Jump();
+        }
     }
     void Move()
     {
@@ -37,29 +43,11 @@ public class TempMovement : MonoBehaviour
 
     void Jump()
     {
-        //if( Input.GetKey(KeyCode.Space) && isTouchGround == true)
-        if (Input.GetButtonDown("Jump") && isTouchGround == true)
-        {
-            Vector3 jumpForceVector = new Vector3(0f, jumpForce, 0f);
-            rb.AddForce(jumpForceVector, ForceMode.Impulse);
-            isTouchGround = false;
-            Debug.Log("jumping");
-        }
-        
+        Vector3 jumpForceVector = new Vector3(0f, jumpForce, 0f);
+        rb.AddForce(jumpForceVector, ForceMode.Impulse);
+        isTouchGround = false;
     }
 
-    private void OnCollisionStay()
-    {
-        isTouchGround = true;
-    }
-
-    /*private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.CompareTag("Respawn"))
-        {
-            canvas.gameObject.SetActive(true);
-        }
-    }*/
 
     public void RestartScene()
     {
