@@ -48,6 +48,11 @@ Shader "Unlit/PlayerDamagedShader"
             {
                 // sample the texture
                 fixed4 col = tex2D(_MainTex, i.uv);
+
+                // Use Lambertian lighting model
+                fixed3 lightDir = _WorldSpaceLightPos0.xyz;
+                fixed diff = max(0.0, dot(normalize(lightDir), normalize(i.vertex.xyz)));
+                col.rgb *= diff;
                 // apply fog
                 UNITY_APPLY_FOG(i.fogCoord, col);
                 return col;

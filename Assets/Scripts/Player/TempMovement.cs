@@ -21,12 +21,11 @@ public class TempMovement : MonoBehaviour
     public int currentHealth;
     public bool isInvulnerable = false;
     private float invulnerabilityTime = 2.0f;
-    Color origColor;
 
     // Additional components
     private Animator animator;
     private CapsuleCollider hurtbox;
-    MeshRenderer meshRenderer;
+    PlayerDamageFlash damageFlash;
 
     // Rotation variables
     public float rotationSpeed = 10f;
@@ -41,9 +40,8 @@ public class TempMovement : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
         hurtbox = GetComponent<CapsuleCollider>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        damageFlash = GetComponent<PlayerDamageFlash>();
 
-        origColor = meshRenderer.material.color;
         currentHealth = maxHealth;
     }
     
@@ -135,20 +133,23 @@ public class TempMovement : MonoBehaviour
     {
         Debug.Log("Taken damage");
         currentHealth -= 1;
-        StartCoroutine(InvulnerabilityTimer());
 
         if (currentHealth <= 0)
         {
             Die();
+        }
+        else 
+        {
+            StartCoroutine(InvulnerabilityTimer());
         }
     }
 
     IEnumerator InvulnerabilityTimer()
     {
         isInvulnerable = true;
-        meshRenderer.material.color = Color.red;
+        damageFlash.EnableFlash();
         yield return new WaitForSeconds(invulnerabilityTime);
-        meshRenderer.material.color = origColor;
+        damageFlash.DisableFlash();
         isInvulnerable = false;
     }
 
