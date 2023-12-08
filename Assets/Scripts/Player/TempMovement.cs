@@ -8,6 +8,8 @@ public class TempMovement : MonoBehaviour
     public float forwardSpeed = 15f;
     public float jumpForce = 20f;
     public int playerSpeed = 150;
+    public float playerMass = 3.0f;
+    public float playerFallingMass = 4.0f;
     public Canvas canvas;
     private bool isTouchGround = true;
     Rigidbody rb;
@@ -40,6 +42,15 @@ public class TempMovement : MonoBehaviour
         isTouchGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, groundLayer);
         animator.SetBool("isGrounded", isTouchGround);
         rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
+
+        // If the player is falling downwards, increase weight to make a nicer trajectory
+        if (rb.velocity.y < 0 && !isTouchGround)
+        {
+            rb.mass = playerFallingMass;
+        } else {
+            rb.mass = playerMass;
+        }
+        
 
         Move();
         if (Input.GetButtonDown("Jump") && isTouchGround == true)
