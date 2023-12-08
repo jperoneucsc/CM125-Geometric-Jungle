@@ -9,6 +9,8 @@ public class EndlessLevelGameManager : MonoBehaviour
 
     bool canPause = true;
 
+    int score = 0;
+
     // Start is called before the first frame update
     void Start()
     {
