@@ -34,6 +34,9 @@ public class TempMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // The update function still runs when timescale is 0, so this line fixes weird pausing issues
+        if (Time.timeScale == 0)return;
+
         isTouchGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, groundLayer);
         animator.SetBool("isGrounded", isTouchGround);
         rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
