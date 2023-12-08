@@ -14,6 +14,9 @@ public class TempMovement : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask obstacleLayer;
 
+    // Additional components
+    private Animator animator;
+
     // Rotation variables
     public float rotationSpeed = 5f;
     private float rotationAngle = 10f;
@@ -24,13 +27,15 @@ public class TempMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        rb = GetComponent<Rigidbody> ();
+        rb = GetComponent<Rigidbody>();
+        animator = GetComponent<Animator>();
     }
     
     // Update is called once per frame
     void Update()
     {
-        isTouchGround = Physics.Raycast(transform.position, Vector3.down, 1, groundLayer);
+        isTouchGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, groundLayer);
+        animator.SetBool("isGrounded", isTouchGround);
         rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
 
         Move();

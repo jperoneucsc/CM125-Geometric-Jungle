@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.6712474, g: 0.7037472, b: 0.76093805, a: 1}
+  m_IndirectSpecularColor: {r: 0.67124754, g: 0.7037481, b: 0.7609396, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -319,7 +319,7 @@ Transform:
   m_GameObject: {fileID: 822460119}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 1, z: 5}
+  m_LocalPosition: {x: 1.63, y: 1, z: 5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -521,13 +521,21 @@ MonoBehaviour:
   m_GameObject: {fileID: 1198273069}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9660638d1ef1c84286f12a5d94598a4, type: 3}
+  m_Script: {fileID: 11500000, guid: e2cb5f8e036a9ba4bbe9310f792a50cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   forwardSpeed: 15
   jumpForce: 7
   playerSpeed: 16
   canvas: {fileID: 0}
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 16
+  obstacleLayer:
+    serializedVersion: 2
+    m_Bits: 0
+  rotationSpeed: 5
+  lerpSpeed: 5
 --- !u!54 &1198273073
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -638,10 +646,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9660638d1ef1c84286f12a5d94598a4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forwardSpeed: 15
-  jumpForce: 5
-  playerSpeed: 8
-  canvas: {fileID: 0}
 --- !u!135 &1944438999
 SphereCollider:
   m_ObjectHideFlags: 0
