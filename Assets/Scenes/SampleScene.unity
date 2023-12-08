@@ -775,7 +775,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ac9fb333a48ba9840b49daeb75c3a1d7, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1282,6 +1282,9 @@ MonoBehaviour:
   obstacleLayer:
     serializedVersion: 2
     m_Bits: 0
+  maxHealth: 3
+  currentHealth: 0
+  isInvulnerable: 0
   rotationSpeed: 15
   lerpSpeed: 5
 --- !u!54 &1198273073
@@ -1448,6 +1451,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1198273081
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1198273069}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 356a516a517331246a6c3e88175b2201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  skins: []
 --- !u!1 &1343419357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1978,6 +1994,10 @@ PrefabInstance:
       value: Player (1)
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
       propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
@@ -1988,6 +2008,10 @@ PrefabInstance:
     - target: {fileID: 5866666021909216657, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
       propertyPath: m_ApplyRootMotion
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8417361359673230750, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -2008,6 +2032,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1198273077}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1198273081}
   m_SourcePrefab: {fileID: 100100000, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
 --- !u!1001 &8847750485508093051
 PrefabInstance:

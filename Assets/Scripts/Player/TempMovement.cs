@@ -16,8 +16,17 @@ public class TempMovement : MonoBehaviour
     public LayerMask groundLayer;
     public LayerMask obstacleLayer;
 
+    // Player health variables
+    public int maxHealth = 3;
+    public int currentHealth;
+    public bool isInvulnerable = false;
+    private float invulnerabilityTime = 2.0f;
+    Color origColor;
+
     // Additional components
     private Animator animator;
+    private CapsuleCollider hurtbox;
+    MeshRenderer meshRenderer;
 
     // Rotation variables
     public float rotationSpeed = 10f;
@@ -31,6 +40,11 @@ public class TempMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         animator = GetComponent<Animator>();
+        hurtbox = GetComponent<CapsuleCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
+
+        origColor = meshRenderer.material.color;
+        currentHealth = maxHealth;
     }
     
     // Update is called once per frame
@@ -43,7 +57,7 @@ public class TempMovement : MonoBehaviour
         animator.SetBool("isGrounded", isTouchGround);
         rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
 
-        // If the player is falling downwards, increase weight to make a nicer trajectory
+        // If the player is falling downwards, increase weight to make a weightier trajectory
         if (rb.velocity.y < 0 && !isTouchGround)
         {
             rb.mass = playerFallingMass;
@@ -52,9 +66,16 @@ public class TempMovement : MonoBehaviour
         }
 
         Move();
+
         if (Input.GetButtonDown("Jump") && isTouchGround == true)
         {
             Jump();
+        }
+
+        // If the player is damaged, flash
+        if (isInvulnerable)
+        {
+            //Debug.Log("Ow");
         }
     }
 
@@ -94,5 +115,45 @@ public class TempMovement : MonoBehaviour
         // Get the current active scene and reload it
         Scene currentScene = SceneManager.GetActiveScene();
         SceneManager.LoadScene(currentScene.name);
+    }
+
+    public void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacles"))
+        {
+            Destroy(collision.gameObject);
+
+            if (!isInvulnerable)
+            {
+                Damage();
+            }
+        }
+    }
+
+    // Health management functions
+    public void Damage()
+    {
+        Debug.Log("Taken damage");
+        currentHealth -= 1;
+        StartCoroutine(InvulnerabilityTimer());
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
+    }
+
+    IEnumerator InvulnerabilityTimer()
+    {
+        isInvulnerable = true;
+        meshRenderer.material.color = Color.red;
+        yield return new WaitForSeconds(invulnerabilityTime);
+        meshRenderer.material.color = origColor;
+        isInvulnerable = false;
+    }
+
+    public void Die()
+    {
+        gameObject.SetActive(false);
     }
 }
