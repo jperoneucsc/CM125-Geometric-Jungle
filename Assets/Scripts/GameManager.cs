@@ -5,6 +5,9 @@ using UnityEngine;
 public class EndlessLevelGameManager : MonoBehaviour
 {
     [SerializeField] PauseMenu pauseMenu;
+    [SerializeField] DeathScreen deathScreen;
+
+    bool canPause = true;
 
     // Start is called before the first frame update
     void Start()
@@ -16,7 +19,7 @@ public class EndlessLevelGameManager : MonoBehaviour
     void Update()
     {
         // Check for pause menu inputs
-        if (Input.GetButtonDown("Pause")) 
+        if (Input.GetButtonDown("Pause") && canPause) 
         {
             if (pauseMenu.isActive)
             {
@@ -27,5 +30,11 @@ public class EndlessLevelGameManager : MonoBehaviour
                 pauseMenu.Pause();
             }
         }
+    }
+
+    public void PlayerDied()
+    {
+        canPause = false;
+        deathScreen.ShowScreen();
     }
 }
