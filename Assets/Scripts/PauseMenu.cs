@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] GameObject pauseMenu;
     public bool isActive = false;
+
+    [SerializeField] SceneLoader sceneLoader;
 
     public void Pause()
     {
@@ -26,6 +29,7 @@ public class PauseMenu : MonoBehaviour
 
     public void TitleScreen()
     {
-        Debug.Log("Do something here at some point");
+        Time.timeScale = 1;
+        sceneLoader.LoadScene("TitleScreen");
     }
 }
