@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.67124754, g: 0.7037481, b: 0.7609396, a: 1}
+  m_IndirectSpecularColor: {r: 0.6712474, g: 0.7037472, b: 0.76093805, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -899,6 +899,7 @@ MonoBehaviour:
   - {fileID: 9209671528728214279, guid: fbbc7f35cc6678648bae9a9c7bbe77b1, type: 3}
   - {fileID: 5747360818413470731, guid: 37d9b0a79bef46d4089e1f87e72d4961, type: 3}
   - {fileID: 3049816454894544536, guid: 7aecf81714d5c8b4eb2bdfc6faea9013, type: 3}
+  itemSpawner: {fileID: 1006876572}
   groundTile: {fileID: 9209671528728214279, guid: fbbc7f35cc6678648bae9a9c7bbe77b1, type: 3}
 --- !u!4 &920438390
 Transform:
@@ -1219,6 +1220,56 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1198273069}
+--- !u!1 &1006876571
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1006876573}
+  - component: {fileID: 1006876572}
+  m_Layer: 0
+  m_Name: ItemSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1006876572
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006876571}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af07bfff821553a46a843b8f48b7a9be, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  items:
+  - {fileID: 6077379039964380128, guid: e1b446070dd325d4b91368103e801e98, type: 3}
+  - {fileID: 2762118618844980087, guid: feda0d677f60e87469cb9da36fbe622b, type: 3}
+  - {fileID: 7888358981939075044, guid: f281bc33191a33d48aaa6b157ebaa913, type: 3}
+  - {fileID: 3429743365584752690, guid: ef1f2d850f3d65c459300381eb336b97, type: 3}
+  - {fileID: 625242516236402489, guid: 43d697a26e4cf694fa1de5435575341d, type: 3}
+--- !u!4 &1006876573
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1006876571}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -126.46463, y: -107.9178, z: 198.94435}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1198273069 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
@@ -1448,6 +1499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 425ae7ce5f25e23488fd667b6a271b2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pauseMenu: {fileID: 0}
 --- !u!4 &1600566322
 Transform:
   m_ObjectHideFlags: 0
@@ -1609,7 +1661,6 @@ GameObject:
   - component: {fileID: 1944439001}
   - component: {fileID: 1944439000}
   - component: {fileID: 1944438999}
-  - component: {fileID: 1944438998}
   - component: {fileID: 1944438997}
   m_Layer: 0
   m_Name: Player
@@ -1645,18 +1696,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1944438998
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1944438996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c9660638d1ef1c84286f12a5d94598a4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!135 &1944438999
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -1873,6 +1912,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 23ede34d8e26eb2459699d6c93e066eb, type: 3}
       propertyPath: m_Controller
       value: 
@@ -1908,3 +1951,4 @@ SceneRoots:
   - {fileID: 1600566322}
   - {fileID: 178502743}
   - {fileID: 654102019}
+  - {fileID: 1006876573}

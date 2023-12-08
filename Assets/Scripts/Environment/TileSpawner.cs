@@ -5,6 +5,7 @@ using UnityEngine;
 public class TileSpawner : MonoBehaviour
 {
     public GameObject[] section;
+    public ItemSpawner itemSpawner;
     private int secNum;
 
     public GameObject groundTile;
@@ -15,6 +16,12 @@ public class TileSpawner : MonoBehaviour
     {
         secNum = Random.Range(0, 3);
         GameObject temp = Instantiate(section[secNum], nextSpawnPoint, Quaternion.identity);
+        
+        bool spawnItem = Random.Range(0f, 1f) > 0.5f;
+        if (spawnItem)
+        {
+            itemSpawner.SpawnItem(temp.transform.position + Vector3.up * 1.0f);
+        }
         nextSpawnPoint = temp.transform.GetChild(0).transform.position;
     }
 
