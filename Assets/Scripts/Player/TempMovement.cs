@@ -6,8 +6,8 @@ using UnityEngine.SceneManagement;
 public class TempMovement : MonoBehaviour
 {
     public float forwardSpeed = 15f;
-    public float jumpForce = 7f;
-    public int playerSpeed = 16;
+    public float jumpForce = 20f;
+    public int playerSpeed = 150;
     public Canvas canvas;
     private bool isTouchGround = true;
     Rigidbody rb;
@@ -18,7 +18,7 @@ public class TempMovement : MonoBehaviour
     private Animator animator;
 
     // Rotation variables
-    public float rotationSpeed = 5f;
+    public float rotationSpeed = 10f;
     private float rotationAngle = 10f;
     public float lerpSpeed = 5f; // Controls how fast the rotation returns to the original rotation
     private float currentRotation = 0f;
