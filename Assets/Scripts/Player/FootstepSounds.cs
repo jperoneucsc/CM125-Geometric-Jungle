@@ -29,7 +29,7 @@ public class FootstepSounds : MonoBehaviour
     void PlayFootstepSound()
     {
         audio.clip = stepSounds[Random.Range(0, stepSounds.Length)];
-        audio.volume = Random.Range(0.5f, 0.7f);
+        audio.volume = Random.Range(0.8f, 1.0f);
         audio.pitch = Random.Range(0.95f, 1.05f);
 
         audio.Play();

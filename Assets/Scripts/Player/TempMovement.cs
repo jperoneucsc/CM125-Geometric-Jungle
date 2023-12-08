@@ -119,9 +119,35 @@ public class TempMovement : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstacles"))
+        GameObject collisionObject = collision.gameObject;
+        if (collisionObject.CompareTag("Obstacles"))
         {
-            Destroy(collision.gameObject);
+            // Get collider's audio script
+            ObstacleSFX collideSFX = collisionObject.GetComponent<ObstacleSFX>();
+            collideSFX.PlaySound();
+
+            // Hide renderer and collider
+            MeshRenderer collisionRenderer = collisionObject.GetComponent<MeshRenderer>();
+            MeshCollider collisionCollider = collisionObject.GetComponent<MeshCollider>();
+            BoxCollider collisionBoxCollider = collisionObject.GetComponent<BoxCollider>();
+
+            if (collisionRenderer == null || (collisionCollider == null && collisionBoxCollider == null))
+            {
+                Destroy(collisionObject);
+            }
+            else
+            {
+                if (collisionCollider != null)
+                {
+                    collisionRenderer.enabled = false;
+                    collisionCollider.enabled = false;
+                }
+                else if (collisionBoxCollider != null)
+                {
+                    collisionRenderer.enabled = false;
+                    collisionBoxCollider.enabled = false;
+                }
+            }
 
             if (!isInvulnerable)
             {
