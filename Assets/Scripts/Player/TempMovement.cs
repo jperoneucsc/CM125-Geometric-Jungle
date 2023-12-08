@@ -2,10 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Playables;
+using UnityEngine.Timeline;
 
 public class TempMovement : MonoBehaviour
 {
     [SerializeField] EndlessLevelGameManager gameManager;
+
+    public PlayableDirector playableDirector;
 
     public float forwardSpeed = 15f;
     public float jumpForce = 20f;
@@ -28,6 +32,7 @@ public class TempMovement : MonoBehaviour
     private Animator animator;
     private CapsuleCollider hurtbox;
     PlayerDamageFlash damageFlash;
+    private bool cutsceneFinished = false;
 
     // Rotation variables
     public float rotationSpeed = 10f;
@@ -45,37 +50,46 @@ public class TempMovement : MonoBehaviour
         damageFlash = GetComponent<PlayerDamageFlash>();
 
         currentHealth = maxHealth;
+
+        rb.isKinematic = true;
+
+        playableDirector.stopped += OnTimelineFinished;
+        // Play the timeline
+        playableDirector.Play();
     }
     
     // Update is called once per frame
     void Update()
     {
-        // The update function still runs when timescale is 0, so this line fixes weird pausing issues
-        if (Time.timeScale == 0)return;
-
-        isTouchGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, groundLayer);
-        animator.SetBool("isGrounded", isTouchGround);
-        rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
-
-        // If the player is falling downwards, increase weight to make a weightier trajectory
-        if (rb.velocity.y < 0 && !isTouchGround)
+        if(cutsceneFinished)
         {
-            rb.mass = playerFallingMass;
-        } else {
-            rb.mass = playerMass;
-        }
+            // The update function still runs when timescale is 0, so this line fixes weird pausing issues
+            if (Time.timeScale == 0)return;
 
-        Move();
+            isTouchGround = Physics.Raycast(transform.position, Vector3.down, 0.5f, groundLayer);
+            animator.SetBool("isGrounded", isTouchGround);
+            rb.velocity = new Vector3(0f, rb.velocity.y, forwardSpeed);
 
-        if (Input.GetButtonDown("Jump") && isTouchGround == true)
-        {
-            Jump();
-        }
+            // If the player is falling downwards, increase weight to make a weightier trajectory
+            if (rb.velocity.y < 0 && !isTouchGround)
+            {
+                rb.mass = playerFallingMass;
+            } else {
+                rb.mass = playerMass;
+            }
 
-        // If the player is damaged, flash
-        if (isInvulnerable)
-        {
-            //Debug.Log("Ow");
+            Move();
+
+            if (Input.GetButtonDown("Jump") && isTouchGround == true)
+            {
+                Jump();
+            }
+
+            // If the player is damaged, flash
+            if (isInvulnerable)
+            {
+                //Debug.Log("Ow");
+            }
         }
     }
 
@@ -188,5 +202,15 @@ public class TempMovement : MonoBehaviour
         {
             gameManager.PlayerDied();
         }
+    }
+
+    void OnTimelineFinished(PlayableDirector director)
+    {
+        // Unregister the callback
+        director.stopped -= OnTimelineFinished;
+
+        // Set the flag indicating the cutscene has finished
+        cutsceneFinished = true;
+        rb.isKinematic = false;
     }
 }
