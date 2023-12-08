@@ -170,6 +170,11 @@ public class TempMovement : MonoBehaviour
         }
     }
 
+    public void CollectableCollected()
+    {
+        gameManager.CollectableCollected();
+    }
+
     // Health management functions
     public void Damage()
     {
@@ -177,10 +182,12 @@ public class TempMovement : MonoBehaviour
 
         if (currentHealth <= 0)
         {
+            gameManager.PlayerHit(currentHealth);
             Die();
         }
         else 
         {
+            gameManager.PlayerHit(currentHealth);
             StartCoroutine(InvulnerabilityTimer());
         }
     }
@@ -212,5 +219,7 @@ public class TempMovement : MonoBehaviour
         // Set the flag indicating the cutscene has finished
         cutsceneFinished = true;
         rb.isKinematic = false;
+
+        gameManager.BeginPlay();
     }
 }

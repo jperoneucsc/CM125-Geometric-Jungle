@@ -8,6 +8,7 @@ public class ItemManager : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
+            other.gameObject.GetComponent<TempMovement>().CollectableCollected();
             // Destroy the item when the player collides with it
             Destroy(gameObject);
         }
