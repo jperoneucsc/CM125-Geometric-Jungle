@@ -15,7 +15,7 @@ public class ItemSpawner : MonoBehaviour
     public void SpawnItem(Vector3 spawnPosition)
     {
         itemNum = Random.Range(0, items.Length);
-        float heightOffset = (Random.Range(0, 2) == 0) ? 0.05f : 2.3f; //Random.Range(1f, 3.5f);
+        float heightOffset = (Random.Range(0, 2) == 0) ? 0.05f : 1.8f; //Random.Range(1f, 3.5f);
 
         // Instantiate the chosen item at the specified position
         GameObject newItem = Instantiate(items[itemNum], spawnPosition + Vector3.up * heightOffset, Quaternion.identity);
