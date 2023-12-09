@@ -11,17 +11,18 @@ public class TileSpawner : MonoBehaviour
     public GameObject groundTile;
     Vector3 nextSpawnPoint;
 
-    
+
     public void SpawnTile()
     {
-        float horizontalOffset = Random.Range(-2.0f, 2.0f);
+        float horizontalOffset = Random.Range(-5.0f, 5.0f); // Increased range for x-axis
         secNum = Random.Range(0, 3);
         GameObject temp = Instantiate(section[secNum], nextSpawnPoint, Quaternion.identity);
 
+        float randomXOffset = Random.Range(-5.0f, 5.0f); // Increased range for additional x-axis randomness
         bool spawnItem = Random.Range(0f, 1f) > 0.5f;
         if (spawnItem)
         {
-            itemSpawner.SpawnItem(temp.transform.position + Vector3.up * 1.0f + Vector3.right * horizontalOffset);
+            itemSpawner.SpawnItem(temp.transform.position + Vector3.up * 1.0f + Vector3.right * (horizontalOffset + randomXOffset));
         }
         nextSpawnPoint = temp.transform.GetChild(0).transform.position;
     }
